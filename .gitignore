@@ -1,0 +1,20 @@
+# course config files
+*.yaml
+
+# gradle
+.gradle/
+build
+
+
+# idea config
+.idea
+
+# old stages
+/Blockchain with Java/*
+!/Blockchain with Java/task/
+/Blockchain with Java/task/*
+!/Blockchain with Java/task/src
+
+# Project exclude paths
+/Topics/Executors/Asynchronous email sending/out/
+/Topics/Executors/Asynchronous email sending/out/production/classes/

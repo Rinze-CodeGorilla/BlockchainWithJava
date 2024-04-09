@@ -1,0 +1,63 @@
+<h2>Arrays as parameters</h2>
+<div class="step-text">
+<h5 id="passing-arrays-to-methods" style="text-align: center;">Passing arrays to methods</h5>
+<p>A <a class="theory-lookup" href="/learn/step/10982" rel="noopener noreferrer nofollow" target="_blank" title="A method in Java is a self-contained block of code that performs a specific task. | It is a fundamental unit of functionality in Java, similar to a function in other programming languages. Methods are used to encapsulate code, making it reusable and modular. They can take inputs in the form of parameters, and return outputs. Methods can also be overloaded, allowing for multiple methods with the same name but different parameters. They are a crucial part of object-oriented programming, as they represent the behavior of objects and classes.">method</a> can have parameters of any types including <a class="theory-lookup" href="/learn/step/3511" rel="noopener noreferrer nofollow" target="_blank" title="An array in Java is a collection of elements of the same type, stored in memory sequentially and processed as a single unit. | It has a predefined size during creation, which cannot be changed in the future. Arrays are initialized with default values of their type, and their elements can be accessed using an index, starting from 0 and up to the array size minus 1.">arrays</a>, <a class="theory-lookup" href="/learn/step/3522" rel="noopener noreferrer nofollow" target="_blank" title="A string in Java is a reference type consisting of characters, and it is one of the most widely used types in Java. | Strings are immutable, meaning their characters cannot be changed once created. They have methods for getting individual characters and extracting substrings, and they work with text, whether it's a simple hello, world! or a complex document. Strings are everywhere in Java code, and understanding how to use them effectively is fundamental for any Java developer.">strings</a>, <a class="theory-lookup" href="/learn/step/3532" rel="noopener noreferrer nofollow" target="_blank" title="In Java, a primitive type is one of eight built-in data types provided by the language. | They are represented by keywords and are not objects, unlike reference types. Primitive types are divided into groups based on their meaning, and each group operates similarly but has different sizes and ranges of values. The most commonly used primitive type is `int`, which represents an integer number. Java also provides several types for integer and fractional numbers, which are often used in arithmetic expressions.">primitive types</a>, and so on.</p>
+<p>In the following example, the method <code class="language-java">processArray</code> has a single parameter of the type <code class="language-java">int[]</code>:</p>
+<pre><code class="language-java">public static void processArray(int[] array) { /* do something */ }
+</code></pre>
+<p>In the body of the method<strong>,</strong> we can process the <a class="theory-lookup" href="/learn/step/9055" rel="noopener noreferrer nofollow" target="_blank" title="In Java, input typically refers to the process of receiving data from an external source, such as a user through the keyboard or a file. | This data is often stored in variables, which can be of various data types like int, float, or String. Java provides several classes and methods for handling input, such as the Scanner class in the java.util package. Input can be used for a variety of purposes, such as getting user feedback or reading data from a file for further processing. It's important to handle input carefully to ensure the program behaves correctly and securely.">input</a> array in any way.</p>
+<p>A parameter of an array type looks like a primitive <a class="theory-lookup" href="/learn/step/3492" rel="noopener noreferrer nofollow" target="_blank" title="In Java, type parameters are used in the definition of generic classes and interfaces to allow for flexibility and reusability in the creation of objects. | They act as placeholders for specific types that will be determined when an object of the generic class is instantiated. Type parameters are defined using a single uppercase letter, and they can be used within the class or interface body as if they were regular types. A class can have multiple type parameters, but it is common for generic classes to have just one or two.">type parameter</a>. But there is one important difference related to the fact that an array is a <a class="theory-lookup" href="/learn/step/4727" rel="noopener noreferrer nofollow" target="_blank" title="A reference type in Java is a data type that stores the memory address of an object, allowing you to access and manipulate the object's state and behavior. | Unlike primitive types, which store their values directly, reference types store a reference to an object located elsewhere in memory. This reference can be assigned to variables, passed as arguments to methods, and returned as values from methods. Reference types are important for creating complex, object-oriented programs in Java.">reference type</a>.</p>
+<p>When you pass a value of a primitive type to a method, a copy of the value is created. When you pass an array to a method, a copy of the reference is created, but the value is the same. It means that if you change the actual value (elements of an array) in the body of a method, you will see these changes outside the method.</p>
+<p>The following method swaps the first and the last elements of its parameter (array).</p>
+<pre><code class="language-java">public static void swapFirstAndLastElements(int[] nums) { // nums is an array
+    if (nums.length &lt; 1) {
+        return; // it returns nothing, i.e. just exits the method
+    }
+
+    int temp = nums[nums.length - 1]; // save the last element in a temporary local variable
+    nums[nums.length - 1] = nums[0];  // now, the last element becomes the first
+    nums[0] = temp;                   // now, the first element becomes the former last
+}</code></pre>
+<p>Calling the method from the main method:</p>
+<pre><code class="language-java">public static void main(String[] args) {
+
+    int[] numbers = { 1, 2, 3, 4, 5 }; // numbers
+
+    System.out.println(Arrays.toString(numbers)); // before swapping
+
+    swapFirstAndLastElements(numbers); // swapping
+
+    System.out.println(Arrays.toString(numbers)); // after swapping
+}</code></pre>
+<p>The output is:</p>
+<pre><code class="language-java">[1, 2, 3, 4, 5]
+[5, 2, 3, 4, 1] </code></pre>
+<p>So, in the body of the main method, an array is visible as modified.</p>
+<h5 id="varargs" style="text-align: center;">Varargs</h5>
+<p>It's possible to pass an arbitrary <a class="theory-lookup" href="/learn/step/3494" rel="noopener noreferrer nofollow" target="_blank" title="In Java, a number is a data type that represents a numeric value. | It can be an integer, which is a whole number, or a floating-point number, which is a number with a decimal point. Java provides several integer types, including `byte`, `short`, `int`, and `long`, with `int` being the most commonly used. For floating-point numbers, Java provides `float` and `double` types, with `double` being the most commonly used.">number</a> of the same type of <a class="theory-lookup" href="/learn/step/12877" rel="noopener noreferrer nofollow" target="_blank" title="In Java, an argument is a value that is passed to a method when it is invoked. | It is a way to provide input to a method, allowing it to perform specific tasks based on the provided data. Arguments can be of any data type, including primitive types (like int, char, boolean) or reference types (like String, Array, or custom objects). When a method is defined, it specifies the types and number of arguments it expects, which are known as the method's parameter list.">arguments</a> to a method using a special syntax named <strong><a class="theory-lookup" href="/learn/step/3518" rel="noopener noreferrer nofollow" target="_blank" title="Varargs, short for variable number of arguments, is a feature in Java that allows a method to take an indefinite number of arguments of the same type. | It is specified by three dots after the type in the method declaration, and in the method body, it can be processed as a regular array of the specified type. This feature is useful when you want to write a method that can handle a varying number of arguments, making the code more concise and flexible.">varargs</a> (variable-length arguments)</strong>. These arguments are specified by three dots after the type. In the body of the method, you can process this parameter as a regular array of the specified type.</p>
+<p>The following method takes an integer <strong>vararg </strong>parameter and outputs the number of arguments in the standard output using the<strong> <a class="theory-lookup" href="/learn/step/10973" rel="noopener noreferrer nofollow" target="_blank" title="In Java, 'length' is an attribute of arrays and strings that returns the number of elements or characters in the array or string, respectively. | It is a read-only property, meaning it can only be used to retrieve the value and cannot be set or modified. The 'length' attribute is automatically set when an array or string is created and initialized, and it provides a convenient way to determine the size of the array or string without having to manually count the elements or characters.">length</a></strong> property of arrays.</p>
+<pre><code class="language-java">public static void printNumberOfArguments(int... numbers) {
+    System.out.println(numbers.length);
+}</code></pre>
+<p>As you can see, a special syntax <code class="language-java"><strong>...</strong></code> is used here to specify a <strong>vararg</strong> parameter.</p>
+<p>Now, you can <a class="theory-lookup" href="/learn/step/7762" rel="noopener noreferrer nofollow" target="_blank" title="In Java, invoke means to execute a specific set of code within a method. | It involves using the method's name and providing the necessary arguments, if any. When a method is invoked, the program's control is transferred to the method's code, allowing it to perform its intended operation. Invoking a method promotes code reusability and modularity, making the code more organized, maintainable, and easier to understand.">invoke</a> the method by passing several integer numbers or an array of ints.</p>
+<pre><code class="language-java">printNumberOfArguments(1);
+printNumberOfArguments(1, 2);
+printNumberOfArguments(1, 2, 3);
+printNumberOfArguments(new int[] { }); // no arguments here
+printNumberOfArguments(new int[] { 1, 2 });</code></pre>
+<p>This code outputs:</p>
+<pre><code class="language-java">1
+2
+3
+0
+2</code></pre>
+<p>This example also demonstrates the difference between the arguments and parameters of a method. The method has only a single parameter but it can be called with several arguments.</p>
+<h5 id="varargs-and-other-parameters" style="text-align: center;">Varargs and other parameters</h5>
+<p>If a method has more than one parameter, the <code class="language-java">vararg</code> parameter must be the last one in the declaration of the method.</p>
+<p>Here is an incorrect example:</p>
+<pre><code class="language-java">public static void method(double... varargs, int a) { /* do something */ }
+</code></pre>
+<p>The correct version of the method is:</p>
+<pre><code class="language-java">public static void method(int a, double... varargs) { /* do something */ }</code></pre>
+</div>
